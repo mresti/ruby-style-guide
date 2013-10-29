@@ -1,3 +1,5 @@
+This style guide has been modified from the original [Ruby Style Guide](https://github.com/bbatsov/ruby-style-guide) to clarify or add points that pertain to the code written maintained by the CloudForms team.  Please see the commit history for the changes made.
+
 # Prelude
 
 > Role models are important. <br/>
@@ -332,6 +334,19 @@ Translations of the guide are available in the following languages:
 
     def some_method
       result
+    end
+    ```
+
+* When using `alias` or `alias_method`, place the call immediately after the method definition.
+
+    ```Ruby
+    def some_method
+      ...
+    end
+    alias_method :aliased_method, :some_method
+
+    def some_other_method
+      ...
     end
     ```
 
@@ -2152,7 +2167,11 @@ this rule only to arrays with two or more elements.
   implements a collection of unordered values with no duplicates. This
   is a hybrid of `Array`'s intuitive inter-operation facilities and
   `Hash`'s fast lookup.
-* Prefer symbols instead of strings as hash keys.
+* Prefer .each.with_object({}) over inject/reduce when accumulating a new Hash.
+* Prefer .collect over inject/reduce when accumulating a new Array.
+
+* Prefer symbols instead of strings as hash keys.  However, be aware of memory concerns with symbols vs strings.
+  Symbols are not GC'ed, so they take up permanent memory, however all symbols "share" the same memory, unlike strings.
 
     ```Ruby
     # bad
@@ -2163,7 +2182,7 @@ this rule only to arrays with two or more elements.
     ```
 
 * Avoid the use of mutable objects as hash keys.
-* Do not use the newer Ruby 1.9 Hash literal syntax when your hash keys are symbols.
+* Do not use the newer Ruby 1.9 Hash literal syntax.
 
     ```Ruby
     # bad
@@ -2188,7 +2207,7 @@ this rule only to arrays with two or more elements.
     hash.value?(value)
     ```
 
-* Use `Hash#fetch` when dealing with hash keys that must be present.
+* Consider using `Hash#fetch` when dealing with hash keys that must be present.
 
     ```Ruby
     heroes = { :batman => 'Bruce Wayne', :superman => 'Clark Kent' }
@@ -2362,20 +2381,19 @@ this rule only to arrays with two or more elements.
     /(?:first|second)/ # good
     ```
 
-* Don't use the cryptic Perl-legacy variables denoting last regexp group matches
-  (`$1`, `$2`, etc). Use `Regexp.last_match[n]` instead.
+* Use the cryptic Perl-legacy variables denoting last regexp group matches
+  (`$1`, `$2`, etc), however, consider using `Regexp.last_match[n]` instead.
 
     ```Ruby
     /(regexp)/ =~ string
     ...
 
-    # bad
+    # okish - very common in our codebase
     process $1
 
     # good
     process Regexp.last_match[1]
     ```
-
 
 * Avoid using numbered groups as it can be hard to track what they contain. Named groups
   can be used instead.
@@ -2612,7 +2630,7 @@ this guide.
 ### RuboCop
 
 [RuboCop](https://github.com/bbatsov/rubocop) is a Ruby code style
-checker based on this style guide. RuboCop already covers a
+checker based on the original style guide. RuboCop already covers a
 significant portion of the Guide, supports both MRI 1.9 and MRI 2.0
 and has good Emacs integration.
 
@@ -2620,7 +2638,7 @@ and has good Emacs integration.
 
 [RubyMine](http://www.jetbrains.com/ruby/)'s code inspections are
 [partially based](http://confluence.jetbrains.com/display/RUBYDEV/RubyMine+Inspections)
-on this guide.
+on the original guide.
 
 # Contributing
 
