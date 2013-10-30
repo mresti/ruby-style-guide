@@ -2389,10 +2389,10 @@ this rule only to arrays with two or more elements.
     ...
 
     # okish - very common in our codebase
-    process $1
+    process($1)
 
     # good
-    process Regexp.last_match[1]
+    process(Regexp.last_match[1])
     ```
 
 * Avoid using numbered groups as it can be hard to track what they contain. Named groups
@@ -2402,12 +2402,12 @@ this rule only to arrays with two or more elements.
     # bad
     /(regexp)/ =~ string
     ...
-    process Regexp.last_match[1]
+    process(Regexp.last_match[1])
 
     # good
     /(?<meaningful_var>regexp)/ =~ string
     ...
-    process meaningful_var
+    process(meaningful_var)
     ```
 
 * Character classes have only a few special characters you should care about:
