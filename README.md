@@ -1,4 +1,4 @@
-This style guide has been modified from the original [Ruby Style Guide](https://github.com/bbatsov/ruby-style-guide) to clarify or add points that pertain to the code written maintained by the CloudForms team.  Please see the commit history for the changes made.
+This style guide has been modified from the original [Ruby Style Guide](https://github.com/bbatsov/ruby-style-guide) to clarify or add points that pertain to the code written and maintained by the CloudForms Management Engine team.  Please see the commit history for the changes made.
 
 # Prelude
 
