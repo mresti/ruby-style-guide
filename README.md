@@ -463,7 +463,7 @@ Translations of the guide are available in the following languages:
 
 * Do not limit lines to a hard value of 80 characters, however, be reasonable with line lengths.  Once you hit around 100-120 characters, you should consider why your line is so long, and perhaps use intermediate variables, methods, or other techniques to make the code more readable.
 * Avoid trailing whitespace.
-* Preserve one trailing newline at the end of a file.
+* Preserve one trailing newline at the end of a file.  If you are using an editor that manipulates this, please be sure it doesn't remove the newline.  In Sublime Text, the user setting is called "ensure_newline_at_eof_on_save" and should be set to true.
 
 ## Syntax
 
